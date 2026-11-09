@@ -339,7 +339,12 @@ function route(){const id=location.hash.slice(1),m=$('#m');
  $('#nav').innerHTML=Object.keys(PR).map(k=>`<a href="#${k}" class="${k==id?'on':''}">${PR[k]}</a>`).join('');$('#ddb').classList.toggle('on',!!PR[id]);$('#ddb span').textContent=PR[id]||'Practicals';$('#dka').classList.toggle('on',id=='analyzer');$('#dkh').classList.toggle('on',!PR[id]&&id!='analyzer');$('#dd').classList.remove('open');
  if(!MOD[id]){m.innerHTML=home();return}
  const mod=MOD[id]();m.innerHTML=mod.h;mod.init();const rb=$('[data-rst]');if(rb)rb.onclick=()=>{if(!confirm('Delete ALL saved readings for '+PR[id]+'? This cannot be undone.'))return;(RESET[id]||[]).forEach(k=>delete DATA[k]);if(id=='hall')STORE.hallT='';saveStore();route()};
- const tb=$('.tabs');if(id=='diode')$('[data-p=d]',tb).textContent='Analyze Actual Observations';if(tb)tb.addEventListener('click',e=>{const p=e.target.dataset.p;if(!p)return;m.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.p==p));m.querySelectorAll('.pane').forEach(b=>b.classList.toggle('on',b.dataset.p==p));if(cur[id])cur[id].resize();if(cur[id+'2'])cur[id+'2'].resize()});
+ const tb=$('.tabs');if(id=='diode')$('[data-p=d]',tb).textContent='Analyze Actual Observations';if(tb)tb.addEventListener('click',e=>{const btn=e.target.closest('button[data-p]');if(!btn)return;const p=btn.dataset.p; // which tab was pressed: t, s, d or v
+  m.querySelectorAll('.tabs button').forEach(b=>{b.classList.toggle('on',b.dataset.p==p);b.setAttribute('aria-selected',b.dataset.p==p)});
+  m.querySelectorAll('.pane').forEach(b=>b.classList.toggle('on',b.dataset.p==p)); // show this section, hide the others
+  btn.scrollIntoView({block:'nearest',inline:'center'}); // keep the pressed tab visible in the scrollable tab strip
+  if(tb.getBoundingClientRect().top<0)tb.scrollIntoView(); // long page: jump back up to the start of the new section
+  if(cur[id])cur[id].resize();if(cur[id+'2'])cur[id+'2'].resize()}); // graphs drawn while hidden need a redraw
  window.scrollTo(0,0)}
 $('#ddb').onclick=e=>{e.stopPropagation();$('#dd').classList.toggle('open')};document.addEventListener('click',()=>$('#dd').classList.remove('open'));document.addEventListener('keydown',e=>{if(e.key=='Escape')$('#dd').classList.remove('open')});
 $('#logo').onclick=()=>go('');
