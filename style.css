@@ -77,6 +77,8 @@ nav.ddm a.on{background:var(--yellow-l);box-shadow:inset 4px 0 0 var(--coral)}
 /* 5. WORKSPACE ------------------------------------------------------------ */
 .pn{background:var(--white);border:1px solid var(--line);border-top:5px solid var(--pc,var(--cyan));border-radius:var(--r);padding:14px;margin:0 0 14px;box-shadow:var(--sh)}
 .pn>h2:first-child::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--pc,var(--cyan));margin-right:8px}
+/* Only the selected tab's section is shown (script.js moves the .on class). */
+.pane{display:none}.pane.on{display:block}
 .pane[data-p="t"] .pn{--pc:var(--yellow)}.pane[data-p="s"] .pn{--pc:var(--cyan)}.pane[data-p="d"] .pn{--pc:var(--navy)}.pane[data-p="v"] .pn{--pc:var(--coral)}
 .note{background:var(--yellow-l);border-color:var(--yellow);margin-top:20px}
 .tabs{display:flex;gap:8px;overflow-x:auto;margin-bottom:14px;padding-bottom:4px}
