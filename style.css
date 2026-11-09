@@ -27,7 +27,7 @@ footer{border-top:1px solid var(--line);padding:18px 16px;text-align:center;colo
 /* 3. FLOATING LOGO (top) + FLOATING DOCK (bottom) ------------------------ */
 header{position:fixed;left:10px;top:calc(env(safe-area-inset-top,0px) + 10px);z-index:50;background:var(--navy);border-radius:999px;padding:8px 16px 8px 12px;box-shadow:var(--sh);display:flex;align-items:center}
 header b{display:inline-flex;align-items:center;gap:9px;color:var(--bg);font-size:17px;font-weight:800;letter-spacing:.2px;cursor:pointer}
-header b::before{content:"";width:14px;height:14px;border-radius:50%;background:var(--yellow);box-shadow:0 0 0 3px rgba(6,214,160,.55)}
+header .mark{display:block;width:28px;height:28px}
 #dock{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 12px);z-index:60;display:flex;align-items:center;gap:4px;padding:6px;background:var(--white);border:1px solid var(--line);border-radius:18px;box-shadow:var(--sh-up);max-width:calc(100% - 16px)}
 #dock>a,#dock .dd>button{display:inline-flex;align-items:center;gap:8px;border:0;background:transparent;color:var(--navy);padding:10px 15px;border-radius:12px;font:inherit;font-size:14px;font-weight:600;text-decoration:none;cursor:pointer;min-height:44px;white-space:nowrap;transition:background .15s,transform .15s}
 #dock>a:hover,#dock .dd>button:hover{background:var(--cyan-l)}
